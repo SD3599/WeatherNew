@@ -39,7 +39,7 @@
 </div>
  </font>
  <font size="4"  color="orange" >
-<form action="/getforecast/place" method="get">  
+<form action="${contextPath}/getforecast/place" method="get">  
 
 <div class="container">
 <label>Forecast for 
