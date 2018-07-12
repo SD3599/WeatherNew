@@ -147,7 +147,8 @@ private WeatherService weatherService;
     @RequestMapping(value = "/getforecast/place", method = RequestMethod.GET)
     public String getforecast(@RequestParam("place")String loc,@RequestParam("days")String days,@RequestParam("type")String degree,Model model) throws Exception  {
     	logger.debug("Getting weather forecast for "+loc);
-    	 Channel yahooResponse = yahooService.getForecast(loc,Integer.parseInt(degree));
+    	int deg=Integer.parseInt(degree);
+    	 Channel yahooResponse = yahooService.getForecast(loc,deg);
      //    model.addAttribute("cityKey", loc);
      //    model.addAttribute("currentWeather", yahooResponse.getItem().getCondition());
       //   model.addAttribute("forecasts", yahooResponse.getItem().getForecasts());
@@ -161,14 +162,19 @@ private WeatherService weatherService;
  Object[] o=yahooResponse.getItem().getForecasts().toArray();
     	//Weather w= weatherService.findByPlace(loc);
     	//if(wc==null)
-
+ String c=" C";
+ 
+if(deg==1)
+	c=" F";
+	
+	
     		
     	//{wc=new Weather(loc,"sunny","28","24","29","89%");}
     	model.addAttribute("temperature",wc.getTemp());
     	model.addAttribute("place",loc);
     	model.addAttribute("mintemp",((Forecast) o[0]).getLow());
     	model.addAttribute("maxtemp",((Forecast) o[0]).getHigh());
-    	//model.addAttribute("humidity",w.getHumidity());
+    	model.addAttribute("c",c);
     	model.addAttribute("weather",wc.getText());
     	//if(day)days=2;
     	int day=Integer.parseInt(days);

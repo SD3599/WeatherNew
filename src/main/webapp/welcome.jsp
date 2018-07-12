@@ -96,7 +96,8 @@
 	  out.print( "Temperature for "+defaultloc); 
   }
   String place=(String)request.getAttribute("place");  
-  
+  String c=(String)request.getAttribute("c");
+  if(c==null)c=" C";
   if(place!=null){  
   out.print( "Temperature for "+place); 
   }
@@ -105,7 +106,7 @@
 	  out.print( "Temperature for Hyderabad");
  Integer t= (Integer)request.getAttribute("temperature");  
 if(t!=null){  
-out.print(" is "+t+"<br/>");
+out.print(" is "+t+c+"<br/>");
 }
 else
 	out.print(" is "+"23"+"<br/>");  
@@ -116,14 +117,14 @@ else
 
 Integer mintemp=(Integer)request.getAttribute("mintemp");  
 if(mintemp!=null){  
-out.print("Min temp: "+mintemp+"<br/>"); 
+out.print("Min temp: "+mintemp+c+"<br/>"); 
 
 }
 else 
 	out.print("Min temp: "+21+"<br/>");
 Integer maxtemp=(Integer)request.getAttribute("maxtemp");  
 if(maxtemp!=null){  
-out.print("Max temp: "+maxtemp+"<br/>"); 
+out.print("Max temp: "+maxtemp+c+"<br/>"); 
 
 }
 out.print("Max temp: "+28+"<br/>");
@@ -136,6 +137,7 @@ out.println("It is a "+weather+" day today!! <br/>");
 //int no = Integer.parseInt(request.getParameter("days"));
 
 String no=(String)request.getAttribute("days"); 
+
 int noo=0;
 if(no!=null){
   noo=Integer.parseInt(no);
@@ -148,8 +150,8 @@ for(int i=0;i<noo;i++){
 	if(tem!=null){  
 		out.print("Forecast for "+tem.getDay()+"<br/>");
 	out.print("=======================================<br/>");
-	out.print("Min temp: "+tem.getLow()+"<br/>"); 
-	out.print("Max temp: "+tem.getHigh()+"<br/>"); 
+	out.print("Min temp: "+tem.getLow()+c+"<br/>"); 
+	out.print("Max temp: "+tem.getHigh()+c+"<br/>"); 
 	out.print("Weather : "+tem.getText()+"<br/>"); 
 	out.print("=======================================<br/>");
 	}
