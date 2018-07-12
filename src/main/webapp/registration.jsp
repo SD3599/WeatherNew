@@ -32,6 +32,7 @@
 
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
         <h2 class="form-signin-heading">Create your account</h2>
+        <label><font size ="3">Username</font></label>
         <spring:bind path="username">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="username" class="form-control" placeholder="Username"
@@ -39,14 +40,14 @@
                 <form:errors path="username"></form:errors>
             </div>
         </spring:bind>
-
+ <label><font size ="3">Password</font></label>
         <spring:bind path="password">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
                 <form:errors path="password"></form:errors>
             </div>
         </spring:bind>
-
+<label><font size ="3">Cnfirm Password</font></label>
         <spring:bind path="passwordConfirm">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="password" path="passwordConfirm" class="form-control"
@@ -54,7 +55,7 @@
                 <form:errors path="passwordConfirm"></form:errors>
             </div>
         </spring:bind>
-        
+        <label><font size ="3">Select a security question in case you forget password</font></label>
          <spring:bind path="securityquestion">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <!--<form:input type="text" path="securityquestion" class="form-control" placeholder="Username"
@@ -62,13 +63,13 @@
                 <form:errors path="securityquestion"></form:errors>-->
                 <select name="securityquestion">
                 <option value="What is your Petname" selected>What is your Petname</option>
-   				<option value="What is your Mother's Maiden name">What is your Mother's Maiden name"</option>
+   				<option value="What is the maiden name of your mother">What is your Mother's Maiden name"</option>
   				<option value="What is your Native Place">What is your Native Place</option>
  				<option value="What is your Mother tongue">What is your Mother tongue</option>
                 </select>
             </div>
         </spring:bind>
-        
+        <label><font size ="3">Security Answer</font></label>
          <spring:bind path="securityanswer">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="securityanswer" class="form-control"
@@ -76,12 +77,24 @@
                 <form:errors path="securityanswer"></form:errors>
             </div>
         </spring:bind>
-        
+        <label><font size ="3">Select your location</font></label>
          <spring:bind path="Location">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="location" class="form-control" placeholder="Location"
-                            autofocus="true"></form:input>
-                <form:errors path="location"></form:errors>
+            <select name="location">
+  <option value="Hyderabad">Hyderabad</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Mumbai">Mumbai</option>
+  <option value="Chennai">Chennai</option>
+  <option value="Kolkata">Kolkata</option>
+  <option value="Pune">Pune</option>
+  <option value="Vienna">Vienna</option>
+  <option value="Newyork">New york</option>
+  <option value="Sydney">Sydney</option>
+  <option value="Amsterdam">Amsterdam</option>
+  <option value="Los Angeles">Los Angeles</option>
+  
+</select>
+                
             </div>
         </spring:bind>
 
