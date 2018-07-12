@@ -47,7 +47,7 @@
                 <form:errors path="password"></form:errors>
             </div>
         </spring:bind>
-<label><font size ="3">Cnfirm Password</font></label>
+<label><font size ="3">Confirm Password</font></label>
         <spring:bind path="passwordConfirm">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="password" path="passwordConfirm" class="form-control"

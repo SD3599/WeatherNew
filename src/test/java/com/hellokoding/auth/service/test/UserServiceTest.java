@@ -1,8 +1,5 @@
 package com.hellokoding.auth.service.test;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import javax.transaction.Transactional;
 
@@ -15,6 +12,7 @@ import com.hellokoding.auth.service.UserService;
 import com.hellokoding.auth.test.AbstractTest;
 
 import junit.framework.Assert;
+@SuppressWarnings("deprecation")
 @Transactional
 public class UserServiceTest extends AbstractTest {
 	@Autowired

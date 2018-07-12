@@ -4,16 +4,16 @@ import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.Condition;
 import com.github.fedy2.weather.data.Forecast;
 import com.hellokoding.auth.model.User;
-import com.hellokoding.auth.model.Weather;
+
 
 import com.hellokoding.auth.service.SecurityService;
 import com.hellokoding.auth.service.UserService;
-import com.hellokoding.auth.service.WeatherService;
+
 import com.hellokoding.auth.validator.UserValidator;
 
 import com.hellokoding.auth.service.IWeatherService;
 
-import java.awt.List;
+
 
 /*import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.core.OWM;
@@ -21,7 +21,7 @@ import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.DailyWeatherForecast;*/
 
 import java.security.Principal;
-import java.util.ArrayList;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,23 +30,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
+
 
 @Controller
 public class UserController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);	
+	private static final Logger Log = LoggerFactory.getLogger(UserController.class);	
     @Autowired
     private UserService userService;
 
     @Autowired
     private SecurityService securityService;
-@Autowired
-private WeatherService weatherService;
+//@Autowired
+//private WeatherService weatherService;
     @Autowired
     private UserValidator userValidator;
     @Autowired
@@ -54,7 +54,7 @@ private WeatherService weatherService;
     
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
-    	logger.debug("Registration called");
+    	Log.debug("Registration called");
         model.addAttribute("userForm", new User());
 
         return "registration";
@@ -87,7 +87,7 @@ private WeatherService weatherService;
 */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-    	logger.debug("Registration with post called with userform");
+    	Log.debug("Registration with post called with userform");
     	userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -97,13 +97,13 @@ private WeatherService weatherService;
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-        logger.debug("autologin called");
+        Log.debug("autologin called");
         return "redirect:/welcome";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
-    	logger.debug("Login (get )");
+    	Log.debug("Login (get )");
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
@@ -115,7 +115,7 @@ private WeatherService weatherService;
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model,Principal p) throws Exception {
-    	logger.debug("user logged in successfully");
+    	Log.debug("user logged in successfully");
     	String s=p.getName();
     	User u=userService.findByUsername(s);//String username);
     	model.addAttribute("defaultloc",u.getLocation());
@@ -146,7 +146,7 @@ private WeatherService weatherService;
 
     @RequestMapping(value = "/getforecast/place", method = RequestMethod.GET)
     public String getforecast(@RequestParam("place")String loc,@RequestParam("days")String days,@RequestParam("type")String degree,Model model) throws Exception  {
-    	logger.debug("Getting weather forecast for "+loc);
+    	Log.debug("Getting weather forecast for "+loc);
     	int deg=Integer.parseInt(degree);
     	 Channel yahooResponse = yahooService.getForecast(loc,deg);
      //    model.addAttribute("cityKey", loc);
