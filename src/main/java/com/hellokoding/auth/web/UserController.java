@@ -185,5 +185,6 @@ private WeatherService weatherService;
 VALUES
 (1,'45%','32','23','hyderabad','25','sunny');*/
     }
-     
+
+   
 }

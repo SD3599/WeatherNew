@@ -43,21 +43,21 @@
 
 <div class="container">
 <label>Forecast for 
-<input list="places" name="place" /></label>
-<datalist id="places">
-  <option value="Hyderabad">
-  <option value="Delhi">
-  <option value="Mumbai">
-  <option value="Chennai">
-  <option value="Kolkata">
-  <option value="Pune">
-  <option value="Vienna">
-  <option value="Newyork">
-  <option value="Sydney">
-  <option value="Amsterdam">
-  <option value="Los Angeles">
+</label>
+<select name="place">
+  <option value="Hyderabad">Hyderabad</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Mumbai">Mumbai</option>
+  <option value="Chennai">Chennai</option>
+  <option value="Kolkata">Kolkata</option>
+  <option value="Pune">Pune</option>
+  <option value="Vienna">Vienna</option>
+  <option value="Newyork">New york</option>
+  <option value="Sydney">Sydney</option>
+  <option value="Amsterdam">Amsterdam</option>
+  <option value="Los Angeles">Los Angeles</option>
   
-</datalist>
+</select>
   in
    <select name="type">
    
@@ -65,7 +65,23 @@
    <option value="1">Fahrenheit</option>
    </select>
    for next 
-   <input type="text" name="days" value="2"> days
+   <select name="days">
+   
+  
+   <option value="1">1</option>
+   <option value="2">2</option>
+   <option value="3">3</option>
+   <option value="4">4</option>
+   <option value="5">5</option>
+   <option value="6">6</option>
+   <option value="7">7</option>
+   <option value="8">8</option>
+   <option value="9">9</option>
+   <option value="10">10</option>
+   
+   
+   </select>
+    days
    <input type="submit" value="Get Forecast" />
    </div>  
   </form>  
