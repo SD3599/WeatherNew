@@ -114,11 +114,32 @@ private WeatherService weatherService;
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model,Principal p) {
+    public String welcome(Model model,Principal p) throws Exception {
     	logger.debug("user logged in successfully");
     	String s=p.getName();
     	User u=userService.findByUsername(s);//String username);
     	model.addAttribute("defaultloc",u.getLocation());
+    	 Channel yahooResponse = yahooService.getForecast(u.getLocation(),0);
+         //    model.addAttribute("cityKey", loc);
+         //    model.addAttribute("currentWeather", yahooResponse.getItem().getCondition());
+          //   model.addAttribute("forecasts", yahooResponse.getItem().getForecasts());
+     System.out.println("............"+yahooResponse.getItem().getCondition()+"..........."+ yahooResponse.getItem().getForecasts()+"...................");
+     System.out.println("............"+yahooResponse.getItem().getCondition().getCode()+"..........."+ yahooResponse.getItem().getForecasts()+"...................");
+       //hyderabad............Condition [text=Cloudy, code=26, temp=23, date=Wed Jul 11 00:30:00 IST 2018]...........[Forecast [day=WED, date=Wed Jul 11 00:00:00 IST 2018, low=22, high=28, text=Scattered Thunderstorms, code=47], Forecast [day=THU, date=Thu Jul 12 00:00:00 IST 2018, low=22, high=27, text=Breezy, code=23], Forecast [day=FRI, date=Fri Jul 13 00:00:00 IST 2018, low=22, high=28, text=Scattered Thunderstorms, code=47], Forecast [day=SAT, date=Sat Jul 14 00:00:00 IST 2018, low=22, high=27, text=Scattered Thunderstorms, code=47], Forecast [day=SUN, date=Sun Jul 15 00:00:00 IST 2018, low=22, high=28, text=Scattered Thunderstorms, code=47], Forecast [day=MON, date=Mon Jul 16 00:00:00 IST 2018, low=22, high=25, text=Scattered Thunderstorms, code=47], Forecast [day=TUE, date=Tue Jul 17 00:00:00 IST 2018, low=22, high=27, text=Scattered Thunderstorms, code=47], Forecast [day=WED, date=Wed Jul 18 00:00:00 IST 2018, low=22, high=28, text=Scattered Thunderstorms, code=47], Forecast [day=THU, date=Thu Jul 19 00:00:00 IST 2018, low=22, high=28, text=Mostly Cloudy, code=28], Forecast [day=FRI, date=Fri Jul 20 00:00:00 IST 2018, low=22, high=28, text=Cloudy, code=26]]...................
+     Condition wc=yahooResponse.getItem().getCondition();
+     
+    // Forecast[] f=null;
+     //List f=(List) yahooResponse.getItem().getForecasts();
+     Object[] o=yahooResponse.getItem().getForecasts().toArray();
+        	//Weather w= weatherService.findByPlace(loc);
+        	//if(wc==null)
+
+        		
+        	//{wc=new Weather(loc,"sunny","28","24","29","89%");}
+        	model.addAttribute("temperature",wc.getTemp());
+       // 	model.addAttribute("place",u.getLocation());
+        	model.addAttribute("mintemp",((Forecast) o[0]).getLow());
+        	model.addAttribute("maxtemp",((Forecast) o[0]).getHigh());
         return "welcome";
     }
     
@@ -127,9 +148,9 @@ private WeatherService weatherService;
     public String getforecast(@RequestParam("place")String loc,@RequestParam("days")String days,@RequestParam("type")String degree,Model model) throws Exception  {
     	logger.debug("Getting weather forecast for "+loc);
     	 Channel yahooResponse = yahooService.getForecast(loc,Integer.parseInt(degree));
-         model.addAttribute("cityKey+2295414", loc);
-         model.addAttribute("currentWeather", yahooResponse.getItem().getCondition());
-         model.addAttribute("forecasts", yahooResponse.getItem().getForecasts());
+     //    model.addAttribute("cityKey", loc);
+     //    model.addAttribute("currentWeather", yahooResponse.getItem().getCondition());
+      //   model.addAttribute("forecasts", yahooResponse.getItem().getForecasts());
  System.out.println(loc+"............"+yahooResponse.getItem().getCondition()+"..........."+ yahooResponse.getItem().getForecasts()+"...................");
  System.out.println(loc+"............"+yahooResponse.getItem().getCondition().getCode()+"..........."+ yahooResponse.getItem().getForecasts()+"...................");
    //hyderabad............Condition [text=Cloudy, code=26, temp=23, date=Wed Jul 11 00:30:00 IST 2018]...........[Forecast [day=WED, date=Wed Jul 11 00:00:00 IST 2018, low=22, high=28, text=Scattered Thunderstorms, code=47], Forecast [day=THU, date=Thu Jul 12 00:00:00 IST 2018, low=22, high=27, text=Breezy, code=23], Forecast [day=FRI, date=Fri Jul 13 00:00:00 IST 2018, low=22, high=28, text=Scattered Thunderstorms, code=47], Forecast [day=SAT, date=Sat Jul 14 00:00:00 IST 2018, low=22, high=27, text=Scattered Thunderstorms, code=47], Forecast [day=SUN, date=Sun Jul 15 00:00:00 IST 2018, low=22, high=28, text=Scattered Thunderstorms, code=47], Forecast [day=MON, date=Mon Jul 16 00:00:00 IST 2018, low=22, high=25, text=Scattered Thunderstorms, code=47], Forecast [day=TUE, date=Tue Jul 17 00:00:00 IST 2018, low=22, high=27, text=Scattered Thunderstorms, code=47], Forecast [day=WED, date=Wed Jul 18 00:00:00 IST 2018, low=22, high=28, text=Scattered Thunderstorms, code=47], Forecast [day=THU, date=Thu Jul 19 00:00:00 IST 2018, low=22, high=28, text=Mostly Cloudy, code=28], Forecast [day=FRI, date=Fri Jul 20 00:00:00 IST 2018, low=22, high=28, text=Cloudy, code=26]]...................
