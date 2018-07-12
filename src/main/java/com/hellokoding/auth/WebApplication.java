@@ -9,7 +9,7 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 @SpringBootApplication
 public class WebApplication extends SpringBootServletInitializer {
-	private static final Logger logger = LoggerFactory.getLogger(WebApplication.class);	
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebApplication.class);	
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(WebApplication.class);
@@ -17,7 +17,7 @@ public class WebApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(WebApplication.class, args);
-        logger.debug("--Application Started--");
+        LOGGER.debug("--Application Started--");
     }
 }
 
