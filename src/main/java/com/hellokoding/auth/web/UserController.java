@@ -74,11 +74,11 @@ public class UserController {
     public String welcome(Model model,Principal p) throws Exception {
     	Log.debug("user logged in successfully");
     	String s=p.getName();
-    	User u=userService.findByUsername(s);//String username);
+    	User u=userService.findByUsername(s);
     	model.addAttribute("defaultloc",u.getLocation());
 	    Channel yahooResponse = yahooService.getForecast(u.getLocation(),0);
-	    Log.info(yahooResponse.getItem().getCondition()+"..........."+ yahooResponse.getItem().getForecasts()+"...................");
-	    Log.info(yahooResponse.getItem().getCondition().getCode()+"..........."+ yahooResponse.getItem().getForecasts()+"...................");
+	    Log.info(yahooResponse.getItem().getCondition()+" "+ yahooResponse.getItem().getForecasts());
+	    Log.info(yahooResponse.getItem().getCondition().getCode()+" "+ yahooResponse.getItem().getForecasts());
 	    Condition wc=yahooResponse.getItem().getCondition();
 	    Object[] o=yahooResponse.getItem().getForecasts().toArray();
 	    model.addAttribute("temperature",wc.getTemp());
@@ -90,11 +90,11 @@ public class UserController {
 
     @RequestMapping(value = "/getforecast/place", method = RequestMethod.GET)
     public String getforecast(@RequestParam("place")String loc,@RequestParam("days")String days,@RequestParam("type")String degree,Model model) throws Exception  {
-    	Log.debug("Getting weather forecast for "+loc);
+    	Log.debug("Getting weather forecast for {}",loc);
     	int deg=Integer.parseInt(degree);
     	 Channel yahooResponse = yahooService.getForecast(loc,deg);
-      	 Log.info(loc+"............"+yahooResponse.getItem().getCondition()+"..........."+ yahooResponse.getItem().getForecasts()+"...................");
-    	 Log.info(loc+"............"+yahooResponse.getItem().getCondition().getCode()+"..........."+ yahooResponse.getItem().getForecasts()+"...................");
+      	 Log.info(loc+" "+yahooResponse.getItem().getCondition()+" "+ yahooResponse.getItem().getForecasts());
+    	 Log.info(loc+" "+yahooResponse.getItem().getCondition().getCode()+" "+ yahooResponse.getItem().getForecasts());
          Condition wc=yahooResponse.getItem().getCondition();
          Object[] o=yahooResponse.getItem().getForecasts().toArray();
     	 String c=" C";
