@@ -10,19 +10,19 @@ The user can select any location to see weather forecast for that place
  - In degrees celsius or fahrenheit
  
 Prerequisites
--JDK 1.8 or later
--Maven 3 or later
--MySQL 5.6 or later
--Tomcat 8.x or later
+ - JDK 1.8 or later
+ - Maven 3 or later
+ - MySQL 5.6 or later
+ - Tomcat 8.x or later
 
 Run
- mvn spring-boot:run 
+ - mvn spring-boot:run 
 
 URL
- http://localhost:8080/
+ -  http://localhost:8080/
  
- Sources:
-  https://hellokoding.com/registration-and-login-example-with-spring-security-spring-boot-spring-data-jpa-hsql-jsp/
-  https://github.com/fedy2/yahoo-weather-java-api
+ Sources
+ -   https://hellokoding.com/registration-and-login-example-with-spring-security-spring-boot-spring-data-jpa-hsql-jsp/
+ -   https://github.com/fedy2/yahoo-weather-java-api
 
 
