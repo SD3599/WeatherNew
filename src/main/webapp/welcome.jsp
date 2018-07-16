@@ -103,32 +103,44 @@
   }
   
   else if(defaultloc==null)
-	  out.print( "Temperature for Hyderabad");
- Integer t= (Integer)request.getAttribute("temperature");  
+	  out.print( "Temperature for hyderabad");
+			  Weather w=(Weather)request.getAttribute("Weather");
+			  if(w==null)
+					out.print("empty"); 
+			  else{
+ //Integer t= (Integer)request.getAttribute("temperature");
+ Integer t=w.getTemperature();
 if(t!=null){  
 out.print(" is "+t+c+"<br/>");
 }
 else
-	out.print(" is "+"23"+"<br/>");  
+	out.print(" is "+"23"+"<br/>");  //will never reach here .. but just incase
 
 //else
 //out.print("23"); 
 
 
-Integer mintemp=(Integer)request.getAttribute("mintemp");  
+//Integer mintemp=(Integer)request.getAttribute("mintemp");
+Integer mintemp=w.getMintemp();
 if(mintemp!=null){  
 out.print("Min temp: "+mintemp+c+"<br/>"); 
 
 }
 else 
 	out.print("Min temp: "+21+"<br/>");
-Integer maxtemp=(Integer)request.getAttribute("maxtemp");  
+
+//Integer maxtemp=(Integer)request.getAttribute("maxtemp");
+Integer maxtemp=w.getMaxtemp();
 if(maxtemp!=null){  
 out.print("Max temp: "+maxtemp+c+"<br/>"); 
 
 }
+else
 out.print("Max temp: "+28+"<br/>");
-String weather=(String)request.getAttribute("weather");  
+
+
+//String weather=(String)request.getAttribute("weather");  
+String weather=w.getWeather();
 if(weather!=null){  
 out.println("It is a "+weather+" day today!! <br/>"); 
 }
@@ -155,6 +167,7 @@ for(int i=0;i<noo;i++){
 	out.print("Weather : "+tem.getText()+"<br/>"); 
 	out.print("=======================================<br/>");
 	}
+}
 }
 
 }

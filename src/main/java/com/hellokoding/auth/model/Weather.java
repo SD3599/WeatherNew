@@ -2,35 +2,42 @@ package com.hellokoding.auth.model;
 
 
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
 
 
 	
-	@Entity
-	@Table(name = "Weather")
+
 	public class Weather {
 	    private Long id;
 	    private String place;
 	    private String weather;
-	    private String temperature;
-	    private String mintemp;
-	    private String maxtemp;
-	    private String humidity;
+	    private int temperature;
+	    private int mintemp;
+	    private int maxtemp;
+	    private String unit;
 	    
+	    public Weather( String weather, String unit, int mintemp, int maxtemp) {
+			super();
+			
+			this.weather = weather;
+			this.mintemp = mintemp;
+			this.maxtemp = maxtemp;
+			this.unit = unit;
+			
+		}
 	   
-	    public Weather(String place, String weather, String temperature, String mintemp, String maxtemp,
-				String humidity) {
+	    public Weather(String place,  String unit,String weather, int temperature, int mintemp, int maxtemp) {
 			super();
 			this.place = place;
 			this.weather = weather;
 			this.temperature = temperature;
 			this.mintemp = mintemp;
 			this.maxtemp = maxtemp;
-			this.humidity = humidity;
+			this.unit = unit;
+			
 		}
 
 		public Weather() {
@@ -63,37 +70,46 @@ import javax.persistence.Table;
 			this.weather = weather;
 		}
 
-		public String getTemperature() {
+		public int getTemperature() {
 			return temperature;
 		}
 
-		public void setTemperature(String temperature) {
+		public void setTemperature(int temperature) {
 			this.temperature = temperature;
 		}
 
-		public String getMintemp() {
+		public int getMintemp() {
 			return mintemp;
 		}
 
-		public void setMintemp(String mintemp) {
+		public void setMintemp(int mintemp) {
 			this.mintemp = mintemp;
 		}
 
-		public String getMaxtemp() {
+		public int getMaxtemp() {
 			return maxtemp;
 		}
 
-		public void setMaxtemp(String maxtemp) {
+		public void setMaxtemp(int maxtemp) {
 			this.maxtemp = maxtemp;
 		}
 
-		public String getHumidity() {
-			return humidity;
+		public String getUnit() {
+			return unit;
 		}
 
-		public void setHumidity(String humidity) {
-			this.humidity = humidity;
+		public void setUnit(String unit) {
+			this.unit = unit;
 		}
+
+		@Override
+		public String toString() {
+			return "Weather [id=" + id + ", place=" + place + ", weather=" + weather + ", temperature=" + temperature
+					+ ", mintemp=" + mintemp + ", maxtemp=" + maxtemp + ", unit=" + unit + "]";
+		}
+
+	
 
 		
 }
+	

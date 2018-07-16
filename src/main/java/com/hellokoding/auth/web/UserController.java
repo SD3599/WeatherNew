@@ -4,6 +4,7 @@ import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.Condition;
 import com.github.fedy2.weather.data.Forecast;
 import com.hellokoding.auth.model.User;
+import com.hellokoding.auth.model.Weather;
 import com.hellokoding.auth.service.SecurityService;
 import com.hellokoding.auth.service.UserService;
 import com.hellokoding.auth.validator.UserValidator;
@@ -81,10 +82,12 @@ public class UserController {
 	    Log.info(yahooResponse.getItem().getCondition().getCode()+" "+ yahooResponse.getItem().getForecasts());
 	    Condition wc=yahooResponse.getItem().getCondition();
 	    Object[] o=yahooResponse.getItem().getForecasts().toArray();
-	    model.addAttribute("temperature",wc.getTemp());
+	    Weather w=new Weather(u.getLocation(),"C",wc.getText(),wc.getTemp(),((Forecast) o[0]).getHigh(),((Forecast) o[0]).getLow());
+	    model.addAttribute("Weather",w);
+	 /*   model.addAttribute("temperature",wc.getTemp());
         model.addAttribute("mintemp",((Forecast) o[0]).getLow());
         model.addAttribute("maxtemp",((Forecast) o[0]).getHigh());
-        return "welcome";
+       */ return "welcome";
     }
     
 
@@ -100,13 +103,10 @@ public class UserController {
     	 String c=" C";
          if(deg==1)
 	           c=" F";
-		model.addAttribute("temperature",wc.getTemp());
-    	model.addAttribute("place",loc);
-    	model.addAttribute("mintemp",((Forecast) o[0]).getLow());
-    	model.addAttribute("maxtemp",((Forecast) o[0]).getHigh());
-    	model.addAttribute("c",c);
-    	model.addAttribute("weather",wc.getText());
-    	int day=Integer.parseInt(days);
+         Weather w=new Weather(loc,c,wc.getText(),wc.getTemp(),((Forecast) o[0]).getHigh(),((Forecast) o[0]).getLow());
+        System.out.println(w.toString());
+        model.addAttribute("Weather",w); 
+		int day=Integer.parseInt(days);
     	if(day>0)
     	{
     	for(int i=0;i<day;i++)
