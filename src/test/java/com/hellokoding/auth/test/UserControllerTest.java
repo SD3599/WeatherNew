@@ -136,7 +136,7 @@ public class UserControllerTest extends AbstractControllerTest {
     
     @Test
     public void testUserLoginFailure() throws Exception {
-	    RequestBuilder requestBuilder = post("http://localhost:8090/login")
+	    RequestBuilder requestBuilder = post("/login")
 	            .param("username", "swapn")
 	            .param("password", "swapnika");
 	    		 mockMvc.perform(requestBuilder)
@@ -147,7 +147,7 @@ public class UserControllerTest extends AbstractControllerTest {
     
     @Test
   	public void testUserLoginSuccess() throws Exception {
-    	mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8090/login")
+    	mockMvc.perform(MockMvcRequestBuilders.post("/login")
   	            .param("username", "swapnika")
   	            .param("password", "swapnika"))
     	   .andDo(print())
