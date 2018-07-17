@@ -95,6 +95,7 @@ public class UserController {
     public String getforecast(@RequestParam("place")String loc,@RequestParam("days")String days,@RequestParam("type")String degree,Model model) throws Exception  {
     	Log.debug("Getting weather forecast for {}",loc);
     	int deg=Integer.parseInt(degree);
+    	 model.addAttribute("place",loc);
     	 Channel yahooResponse = yahooService.getForecast(loc,deg);
       	 Log.info(loc+" "+yahooResponse.getItem().getCondition()+" "+ yahooResponse.getItem().getForecasts());
     	 Log.info(loc+" "+yahooResponse.getItem().getCondition().getCode()+" "+ yahooResponse.getItem().getForecasts());

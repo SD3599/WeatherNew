@@ -1,5 +1,8 @@
 package com.hellokoding.auth.service.test;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import javax.transaction.Transactional;
 
@@ -9,14 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.repository.UserRepository;
 import com.hellokoding.auth.service.UserService;
+import com.hellokoding.auth.service.UserServiceImpl;
 import com.hellokoding.auth.test.AbstractTest;
+import org.junit.Assert;
 
-import junit.framework.Assert;
-@SuppressWarnings("deprecation")
 @Transactional
 public class UserServiceTest extends AbstractTest {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserServiceImpl useService;
+	
 	@Autowired
 	private UserRepository userRepo;
 	@SuppressWarnings("deprecation")
@@ -25,6 +32,16 @@ public class UserServiceTest extends AbstractTest {
 
         String username="swapnika";
         User entity = userService.findByUsername(username);
+Assert.assertNotNull("failure- expected entitiy", entity);
+Assert.assertEquals("expected attribute string doesnot match","swapnika", entity.getUsername());
+   
+}
+	
+	@Test
+    public void testByUsername() throws Exception {
+
+        String username="swapnika";
+        User entity = useService.findByUsername(username);
 Assert.assertNotNull("failure- expected entitiy", entity);
 Assert.assertEquals("expected attribute string doesnot match","swapnika", entity.getUsername());
    
