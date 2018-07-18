@@ -1,4 +1,4 @@
-package com.hellokoding.auth.service;
+package com.WeatherApp.service;
 
 public interface SecurityService {
     String findLoggedInUsername();

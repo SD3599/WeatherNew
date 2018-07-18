@@ -1,6 +1,6 @@
-package com.hellokoding.auth.service;
+package com.WeatherApp.service;
 
-import com.hellokoding.auth.model.User;
+import com.WeatherApp.model.User;
 
 public interface UserService {
     void save(User user);

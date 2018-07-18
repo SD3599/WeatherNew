@@ -1,14 +1,15 @@
-package com.hellokoding.auth.web;
+package com.WeatherApp.web;
 
+import com.WeatherApp.model.User;
+import com.WeatherApp.model.Weather;
+import com.WeatherApp.service.IWeatherService;
+import com.WeatherApp.service.SecurityService;
+import com.WeatherApp.service.UserService;
+import com.WeatherApp.validator.UserValidator;
 import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.Condition;
 import com.github.fedy2.weather.data.Forecast;
-import com.hellokoding.auth.model.User;
-import com.hellokoding.auth.model.Weather;
-import com.hellokoding.auth.service.SecurityService;
-import com.hellokoding.auth.service.UserService;
-import com.hellokoding.auth.validator.UserValidator;
-import com.hellokoding.auth.service.IWeatherService;
+
 import java.security.Principal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

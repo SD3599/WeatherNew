@@ -1,4 +1,4 @@
-package com.hellokoding.auth.service.test;
+package com.WeatherApp.service.test;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -9,10 +9,10 @@ import javax.transaction.Transactional;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hellokoding.auth.model.User;
-import com.hellokoding.auth.repository.UserRepository;
-import com.hellokoding.auth.service.UserService;
-import com.hellokoding.auth.test.AbstractTest;
+import com.WeatherApp.model.User;
+import com.WeatherApp.repository.UserRepository;
+import com.WeatherApp.service.UserService;
+import com.WeatherApp.test.AbstractTest;
 
 import junit.framework.Assert;
 @Transactional

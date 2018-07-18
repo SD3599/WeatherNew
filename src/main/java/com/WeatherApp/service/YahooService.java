@@ -1,4 +1,4 @@
-package com.hellokoding.auth.service;
+package com.WeatherApp.service;
 import com.github.fedy2.weather.YahooWeatherService;
 import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.unit.DegreeUnit;

@@ -88,7 +88,7 @@
   </font>
  <font size="3"  color="white">
   <div class="container">
-  <%@ page import="com.hellokoding.auth.model.Weather" %>
+  <%@ page import="com.WeatherApp.model.Weather" %>
   <%@page import="com.github.fedy2.weather.data.Forecast" %>
   <% 
   String defaultloc=(String)request.getAttribute("defaultloc");  

@@ -1,4 +1,4 @@
-package com.hellokoding.auth.model;
+package com.WeatherApp.model;
 
 
 

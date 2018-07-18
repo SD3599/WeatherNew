@@ -1,4 +1,4 @@
-package com.hellokoding.auth;
+package com.WeatherApp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
