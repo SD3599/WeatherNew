@@ -18,44 +18,45 @@ import org.junit.Assert;
 
 @Transactional
 public class UserServiceTest extends AbstractTest {
-	@Autowired
-	private UserService userService;
 	
 	@Autowired
-	private UserServiceImpl useService;
+	private UserServiceImpl userService;
 	
-	@Autowired
-	private UserRepository userRepo;
-	@SuppressWarnings("deprecation")
+	
+
+	String username="testuser";
 	@Test
     public void testGetByUsername() throws Exception {
-
-        String username="swapnika";
+		User u=new User(username);
+		u.setPassword("testpassword");
+		userService.save(u);
+        
         User entity = userService.findByUsername(username);
-Assert.assertNotNull("failure- expected entitiy", entity);
-Assert.assertEquals("expected attribute string doesnot match","swapnika", entity.getUsername());
-   
+		Assert.assertNotNull("failure- expected entitiy", entity);
+		Assert.assertEquals("expected attribute string doesnot match",username, entity.getUsername());
+		   
 }
 	
+
+	@Test
+    public void saveUser() throws Exception {
+		User user=new User(username);
+		user.setPassword("testpassword");
+		userService.save(user);
+		
+		Assert.assertNotNull("failure- expected entitiy", userService.findByUsername(username));
+		Assert.assertEquals("expected attribute string doesnot match",username, user.getUsername());
+   
+}
+	//Testing username from db, will pass only if username is in table
 	@Test
     public void testByUsername() throws Exception {
 
         String username="swapnika";
-        User entity = useService.findByUsername(username);
-Assert.assertNotNull("failure- expected entitiy", entity);
-Assert.assertEquals("expected attribute string doesnot match","swapnika", entity.getUsername());
-   
-}
-	@Test
-    public void saveUser() throws Exception {
-		User user=new User("testuser");
-		
-        userRepo.save(user);
-		
-Assert.assertNotNull("failure- expected entitiy", userService.findByUsername("testuser"));
-Assert.assertEquals("expected attribute string doesnot match","testuser", user.getUsername());
-   
+        User entity = userService.findByUsername(username);
+        Assert.assertNotNull("failure- expected entitiy", entity);
+        Assert.assertEquals("expected attribute string doesnot match",username, entity.getUsername());
+ 
 }
 	
-
 }

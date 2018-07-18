@@ -20,7 +20,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+/*
+    @Override
+    public void configure(AuthenticationManagerBuilder authenticationMgr) throws Exception {
+        authenticationMgr.inMemoryAuthentication().withUser("akinpaws").password("akinpaws");
+    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+            .withUser("akinpaws")
+            .password(bCryptPasswordEncoder().encode("akinpaws"));
+    }
+*/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -31,6 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .formLogin()
                     .loginPage("/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
                     .permitAll()
                     .and()
                 .logout()
@@ -39,6 +52,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+       auth
+        
+           .userDetailsService(userDetailsService)
+            .passwordEncoder(bCryptPasswordEncoder());
+       
+    	     
+    
     }
 }

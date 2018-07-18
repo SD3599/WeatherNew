@@ -78,58 +78,74 @@ public class UserControllerTest extends AbstractControllerTest {
       mockMvc = MockMvcBuilders
               .webAppContextSetup(context)
               .addFilters(springSecurityFilterChain)
-             .defaultRequest(get("/").with(testSecurityContext()))
+              .defaultRequest(get("/").with(testSecurityContext()))
               .build();
       MockitoAnnotations.initMocks(this);
       //this.authentication = new UsernamePasswordAuthenticationToken("swapnika", "swapnika");
-      
-    //  this.p= authentication.getPrincipal();
+      //  this.p= authentication.getPrincipal();
     }
-   @Test
-    public void testLogin() throws Exception {
-
-        String uri = "/login";
-     
-        
-        
-        mockMvc.perform(MockMvcRequestBuilders.get(uri))
+    @Test
+    public void testLoginPageLoading() throws Exception {
+      mockMvc.perform(MockMvcRequestBuilders.get("/login"))
         		            .andExpect(status().isOk())
         		            .andExpect(view().name("login"));
         
-
-
     }
+    
     @Test
-	public void testRegistrationPageLoading() throws Exception 
-	{
-    	mockMvc.perform(MockMvcRequestBuilders.get("/registration"))
+	public void testRegistrationPageLoading() throws Exception {
+    	mockMvc.perform(MockMvcRequestBuilders
+    			          .get("/registration"))
 		                  .andExpect(status().isOk())
-		                 
 		                  .andExpect(view().name("registration"));
 	}
     
     
     @Test
     public void testUserLoginFailure() throws Exception {
-	    RequestBuilder requestBuilder = post("/login")
-	            .param("username", "swapn")
-	            .param("password", "swapnika");
-	    		 mockMvc.perform(requestBuilder)
-	            .andExpect(redirectedUrl("/login?error"))
-	            ;
+	    mockMvc.perform(MockMvcRequestBuilders
+	    		            .post("/login")
+	    				    .param("username", "swapn")
+	    		            .param("password", "swapnika"))
+	            .andExpect(redirectedUrl("/login?error"));
 	            
-}
+     }
+    
     
     @Test
   	public void testUserLoginSuccess() throws Exception {
+    	User u=new User("testuser");
+    	u.setPassword("testpassword");
+    	userService.save(u);
+    	mockMvc.perform(MockMvcRequestBuilders
+    			             .post("/login")
+  	                         .param("username", "testuser")
+  	                         .param("password", "testpassword"))
+    	//      .andDo(print())
+    	        .andExpect(redirectedUrl("/"));	
+  	    		 
+      }
+ //   will work only if user with username swapnika is in table
+      @Test
+  	  public void testJPAUserLoginSuccess() throws Exception {
     	mockMvc.perform(MockMvcRequestBuilders.post("/login")
   	            .param("username", "swapnika")
   	            .param("password", "swapnika"))
-    	   .andDo(print())
   		        .andExpect(redirectedUrl("/"));	
   	    		 
       }
-      @Test
+  /*    @Test
+      @WithMockUser(username = "akinpaws",password="swapnika" )
+  
+  	  public void cestJPAUserLoginSuccess() throws Exception {
+    	mockMvc.perform(MockMvcRequestBuilders.post("/login")
+  	            .param("username", "akinpaws")
+  	            .param("password", "swapnika"))
+    	.andDo(print())
+  		        .andExpect(redirectedUrl("/"));	
+  	    		 
+      }
+    */  @Test
       public void invalidLoginDenied() throws Exception {
         String loginErrorUrl = "/login?error";
         mockMvc
@@ -149,14 +165,13 @@ public class UserControllerTest extends AbstractControllerTest {
       
       }
       
-      @Test//(expected=org.springframework.web.util.NestedServletException.class)
+     @Test //(expected=org.springframework.web.util.NestedServletException.class)
      @WithMockUser(username = "swapnika",password="swapnika" )
-  	public void testgetwelcomeSuccess() throws Exception {
+  	 public void testgetwelcomeSuccess() throws Exception {
     	  u=userService.findByUsername("swapnika");
     	  when(principal.getName()).thenReturn("swapnika");
     	 // when(service.findByUsername("swapnika")).thenReturn(u);
-    	  
-    	 
+    	      	 
     	  String s=u.getLocation();
     	  String name=principal.getName();
     	  Assert.assertEquals("doesnt match","swapnika",name);
@@ -177,22 +192,20 @@ public class UserControllerTest extends AbstractControllerTest {
       @WithMockUser
    	public void testwelcomeSuccess() throws Exception {
    	  mockMvc.perform(get("/getforecast/place")
-   			
-            .param("place", "Hyderabad")
-            .param("days", "3")   
-            .param("type", "0"))
-    .andExpect(status().isOk())
-     .andDo(print())
-     .andExpect(view().name("welcome"));
-   	String hid="727232";
+   			 .param("place", "Hyderabad")
+             .param("days", "3")   
+             .param("type", "0"))
+            .andExpect(status().isOk())
+         // .andDo(print())
+            .andExpect(view().name("welcome"));
+   	   String hid="727232";
        Channel ch = yahooService.getForecast(hid, 0);
        Assert.assertNotNull("failure- expected entitiy", ch);
      }  
       @Test
   	public void Logout() throws Exception {
     	  mockMvc
-      
-      .perform(logout());
+             .perform(logout());
       }
     
      
