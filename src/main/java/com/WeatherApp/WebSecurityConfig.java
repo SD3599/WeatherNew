@@ -9,29 +9,31 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+/**
+ * Configures security of the application using Spring Security
+ * 
+ * @author Swapnika
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+ /**
+  * Used to encrypt the password before storing it the table 
+  * @return returns the password encoder method
+  */
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-/*
-    @Override
-    public void configure(AuthenticationManagerBuilder authenticationMgr) throws Exception {
-        authenticationMgr.inMemoryAuthentication().withUser("akinpaws").password("akinpaws");
-    }
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-            .withUser("akinpaws")
-            .password(bCryptPasswordEncoder().encode("akinpaws"));
-    }
-*/
+
+    /**
+     * Used to configure security of http end points and permit 
+     * only authenticated users for secured endpoints
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -49,6 +51,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .permitAll();
     }
+    /**
+     * Used to configure the global authentication manager for custom userdetails 
+     * service
+     * @param auth 
+     * @throws Exception
+     */
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

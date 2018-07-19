@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
+/**
+ * Implements Iweather Service and extends yahooweather service 
+ * @author Swapnika
+ *
+ */
 @Service
 public class YahooService extends YahooWeatherService implements IWeatherService<Channel> {
 
@@ -35,6 +40,12 @@ public class YahooService extends YahooWeatherService implements IWeatherService
     public YahooService() throws JAXBException {
         super();
     }
+    /**
+     * @param city a string which represents the city
+     * @param integer for degree 
+     * @return getforecast method which takes woeid(Where on Earth Id) which are unique ids 
+     * provided by yahoo weather API and a degree unit which is either celsius or fahrenheit as input
+     */
 
     @Override
     public Channel getForecast(String city,int c) throws Exception {

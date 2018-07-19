@@ -99,6 +99,17 @@ public class UserControllerTest extends AbstractControllerTest {
 		                  .andExpect(status().isOk())
 		                  .andExpect(view().name("registration"));
 	}
+  /*  Struck near binding result
+    @Test
+	public void testRegistrationPage() throws Exception {
+    	User u=new User();
+    	mockMvc.perform(MockMvcRequestBuilders
+    			          .post("/registration")
+    			          .flashAttr("userForm", u))
+		                  .andExpect(status().isOk())
+		                  .andExpect(view().name("registration"));
+	}
+	*/
     
     
     @Test

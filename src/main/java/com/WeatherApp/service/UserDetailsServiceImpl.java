@@ -15,6 +15,11 @@ import com.WeatherApp.repository.UserRepository;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Implements userDetails service to load the entity of the user when username is given
+ * @author Swapnika
+ *
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired

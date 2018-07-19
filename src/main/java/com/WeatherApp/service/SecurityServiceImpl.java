@@ -9,7 +9,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-
+/**
+ * 
+ * Implements Security Service interface
+ * @author Swapnika
+ *
+ */
 @Service
 public class SecurityServiceImpl implements SecurityService{
     @Autowired
@@ -19,7 +24,9 @@ public class SecurityServiceImpl implements SecurityService{
     private UserDetailsService userDetailsService;
 
     private static final Logger Log = LoggerFactory.getLogger(SecurityServiceImpl.class);
-
+/**
+ * Finds logged in username and returns the username if exists else returns null  
+ */
     @Override
     public String findLoggedInUsername() {
         Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
@@ -30,6 +37,11 @@ public class SecurityServiceImpl implements SecurityService{
         return null;
     }
 
+    /**
+     * This method authenticates a user based on username and password provided.
+     * @param username
+     * @param password
+     */
     @Override
     public void autologin(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);

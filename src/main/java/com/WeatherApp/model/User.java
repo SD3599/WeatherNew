@@ -1,8 +1,13 @@
 package com.WeatherApp.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
+/**
+ * This class is used to create Table "user" with the mentioned fields and 
+ * their corresponding constructors and getters and setters methods
+ * @author Swapnika
+ *
+ */
 @Entity
 @Table(name = "user")
 public class User {

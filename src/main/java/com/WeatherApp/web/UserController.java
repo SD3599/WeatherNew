@@ -22,7 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+/**
+ * Controller class to handle all the endpoints
+ * @author Swapnika
+ *
+ */
 @Controller
 public class UserController {
 	
@@ -44,6 +48,13 @@ public class UserController {
         model.addAttribute("userForm", new User());
         return "registration";
     }
+    /**
+     * 
+     * @param userForm
+     * @param bindingResult
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
     	Log.debug("Registration with post called with userform");
@@ -59,7 +70,13 @@ public class UserController {
         Log.debug("autologin called");
         return "redirect:/welcome";
     }
-
+/**
+ * 
+ * @param model
+ * @param error
+ * @param logout
+ * @return
+ */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
     	Log.debug("Login (get )");
@@ -71,7 +88,13 @@ public class UserController {
 
         return "login";
     }
-
+/**
+ * 
+ * @param model
+ * @param p
+ * @return
+ * @throws Exception
+ */
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model,Principal p) throws Exception {
     	Log.debug("user logged in successfully");
@@ -91,7 +114,15 @@ public class UserController {
        */ return "welcome";
     }
     
-
+/**
+ * 
+ * @param loc
+ * @param days
+ * @param degree
+ * @param model
+ * @return
+ * @throws Exception
+ */
     @RequestMapping(value = "/getforecast/place", method = RequestMethod.GET)
     public String getforecast(@RequestParam("place")String loc,@RequestParam("days")String days,@RequestParam("type")String degree,Model model) throws Exception  {
     	Log.debug("Getting weather forecast for {}",loc);

@@ -7,7 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-
+/**
+ * A simple class for the weather entity.
+ * @author Swapnika
+ *
+ */
 	
 
 	public class Weather {
