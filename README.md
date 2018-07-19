@@ -29,7 +29,7 @@ Run
  - mvn spring-boot:run 
 
 URL
- -  http://localhost:8080/
+ -  http://localhost:8090/
  
  Sources
  -   https://hellokoding.com/registration-and-login-example-with-spring-security-spring-boot-spring-data-jpa-hsql-jsp/
