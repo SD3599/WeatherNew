@@ -15,6 +15,14 @@ Prerequisites
  - Maven 3 or later
  - MySQL 5.6 or later
  - Tomcat 8.x or later
+ 
+MySQL
+Name of the database is newdb alternatively to use your database change 
+ - spring.datasource.url=jdbc:mysql://localhost:3306/newdb
+in application.properties file.
+The username of database used is "user" and password "password", alternatively these lines in application.properties can be changed.
+ - spring.datasource.username=user
+ - spring.datasource.password=password
 
 Run
  - mvn spring-boot:run 
