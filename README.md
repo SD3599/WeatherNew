@@ -17,6 +17,7 @@ Prerequisites
  - Tomcat 8.x or later
  
 MySQL
+
  Name of the database is newdb alternatively to use your database change the following line in application.properties file.
  - spring.datasource.url=jdbc:mysql://localhost:3306/newdb
 
