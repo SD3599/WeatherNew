@@ -41,6 +41,7 @@ public class YahooService extends YahooWeatherService implements IWeatherService
         super();
     }
     /**
+     * Method to handle getforecast request from controller
      * @param city a string which represents the city
      * @param integer for degree 
      * @return getforecast method which takes woeid(Where on Earth Id) which are unique ids 
