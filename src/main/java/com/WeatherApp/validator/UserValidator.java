@@ -9,6 +9,11 @@ import org.springframework.validation.Validator;
 import com.WeatherApp.model.User;
 import com.WeatherApp.service.UserService;
 
+/**This class creates a custom validation for the user credentials
+ * 
+ * @author Swapnika
+ *
+ */
 @Component
 public class UserValidator implements Validator {
     @Autowired
@@ -16,11 +21,20 @@ public class UserValidator implements Validator {
     private String UN="username";
     private String PASS="password";
     private String NOTEMPTY="NotEmpty";
+    /**
+     * This method checks if the parameter class is equal to user entity
+     */
     @Override
     public boolean supports(Class<?> aClass) {
         return User.class.equals(aClass);
     }
 
+    /**
+     * This method validates the user object for various fields based on the listed 
+     * conditions and populates the errors if they exist
+     * @param Object contains the user object
+     * @param errors is the placeholder for errors
+     */
     @Override
     public void validate(Object o, Errors errors) {
         User user = (User) o;

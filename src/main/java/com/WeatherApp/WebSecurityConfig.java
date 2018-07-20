@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Used to configure the global authentication manager for custom userdetails 
      * service
-     * @param auth 
+     * @param auth holds the object of authentication manager builder used to configure the details of authentication
      * @throws Exception
      */
 

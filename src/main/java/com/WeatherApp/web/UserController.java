@@ -42,18 +42,25 @@ public class UserController {
     @Autowired
     private IWeatherService<Channel> yahooService;
     
+    /**
+     * This method maps the request for registration
+     * @param model is the user entity that takes the details of the user
+     * @return a jsp page for registration with a model attribute to take user details
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
     	Log.debug("Registration called");
         model.addAttribute("userForm", new User());
         return "registration";
     }
-    /**
+    /**This method maps the registration request after user has submitted all the 
+     * details for registration and saves them in the repository in case there are 
+     * no errors else redirects to registration page.
      * 
-     * @param userForm
-     * @param bindingResult
-     * @param model
-     * @return
+     * @param userForm is the model sent with the registration jsp page to collect user details
+     * @param bindingResult has the errors during registration if exists
+     * @param model is the placeholder for model object
+     * @return redirects to welcome page after successful registration
      */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
@@ -70,12 +77,12 @@ public class UserController {
         Log.debug("autologin called");
         return "redirect:/welcome";
     }
-/**
+/**The method handles login request
  * 
- * @param model
- * @param error
- * @param logout
- * @return
+ * @param model holds the model object
+ * @param error holds the errors if any after validation 
+ * @param logout to check if login page is called after logout is clicked
+ * @return the jsp view for login
  */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
@@ -88,11 +95,12 @@ public class UserController {
 
         return "login";
     }
-/**
+/**This method handles the request to display welcome page where the user can request 
+ * for weather forecast
  * 
- * @param model
- * @param p
- * @return
+ * @param model holds the model object
+ * @param p principal object to store the details of currently authenticated user
+ * @returns the welcome page
  * @throws Exception
  */
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
@@ -115,12 +123,14 @@ public class UserController {
     }
     
 /**
+ * This method handles the request for weather forecast for the selected place
+ * and makes a request to an external API sending the required parameters
  * 
- * @param loc
- * @param days
- * @param degree
- * @param model
- * @return
+ * @param loc is the string that holds the value for the location
+ * @param days is the days for which weather forecast is required
+ * @param degree is the unit for degree whether celsius or fahrenheit 
+ * @param model holds the model object
+ * @return the view where the weather forecast data is displayed
  * @throws Exception
  */
     @RequestMapping(value = "/getforecast/place", method = RequestMethod.GET)
