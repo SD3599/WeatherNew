@@ -77,15 +77,15 @@ public class UserController {
         Log.debug("autologin called");
         return "redirect:/welcome";
     }
-/**The method handles login request
- * 
- * @param model holds the model object
- * @param error holds the errors if any after validation 
- * @param logout to check if login page is called after logout is clicked
- * @return the jsp view for login
- */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
+	/**The method handles login request
+	 * 
+	 * @param model holds the model object
+	 * @param error holds the errors if any after validation 
+	 * @param logout to check if login page is called after logout is clicked
+	 * @return the jsp view for login
+	 */
+	  @RequestMapping(value = "/login", method = RequestMethod.GET)
+      public String login(Model model, String error, String logout) {
     	Log.debug("Login (get )");
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
@@ -94,17 +94,17 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
-    }
-/**This method handles the request to display welcome page where the user can request 
- * for weather forecast
- * 
- * @param model holds the model object
- * @param p principal object to store the details of currently authenticated user
- * @returns the welcome page
- * @throws Exception
- */
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model,Principal p) throws Exception {
+     }
+	 /**This method handles the request to display welcome page where the user can request 
+	  * for weather forecast
+	  * 
+	  * @param model holds the model object
+  	  * @param p principal object to store the details of currently authenticated user
+	  * @returns the welcome page
+	  * @throws Exception
+	  */
+     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+     public String welcome(Model model,Principal p) throws Exception {
     	Log.debug("user logged in successfully");
     	String s=p.getName();
     	User u=userService.findByUsername(s);
@@ -116,23 +116,24 @@ public class UserController {
 	    Object[] o=yahooResponse.getItem().getForecasts().toArray();
 	    Weather w=new Weather(u.getLocation(),"C",wc.getText(),wc.getTemp(),((Forecast) o[0]).getHigh(),((Forecast) o[0]).getLow());
 	    model.addAttribute("Weather",w);
-	 /*   model.addAttribute("temperature",wc.getTemp());
+	    /*   model.addAttribute("temperature",wc.getTemp());
         model.addAttribute("mintemp",((Forecast) o[0]).getLow());
         model.addAttribute("maxtemp",((Forecast) o[0]).getHigh());
-       */ return "welcome";
+        */
+	    return "welcome";
     }
     
-/**
- * This method handles the request for weather forecast for the selected place
- * and makes a request to an external API sending the required parameters
- * 
- * @param loc is the string that holds the value for the location
- * @param days is the days for which weather forecast is required
- * @param degree is the unit for degree whether celsius or fahrenheit 
- * @param model holds the model object
- * @return the view where the weather forecast data is displayed
- * @throws Exception
- */
+	/**
+	 * This method handles the request for weather forecast for the selected place
+	 * and makes a request to an external API sending the required parameters
+	 * 
+	 * @param loc is the string that holds the value for the location
+	 * @param days is the days for which weather forecast is required
+	 * @param degree is the unit for degree whether celsius or fahrenheit 
+	 * @param model holds the model object
+	 * @return the view where the weather forecast data is displayed
+	 * @throws Exception
+	 */
     @RequestMapping(value = "/getforecast/place", method = RequestMethod.GET)
     public String getforecast(@RequestParam("place")String loc,@RequestParam("days")String days,@RequestParam("type")String degree,Model model) throws Exception  {
     	Log.debug("Getting weather forecast for {}",loc);
