@@ -15,15 +15,25 @@ Prerequisites
  - Maven 3 or later
  - MySQL 5.6 or later
  - Tomcat 8.x or later
+ 
+MySQL
+
+ Name of the database is newdb alternatively to use your database change the following line in application.properties file.
+ - spring.datasource.url=jdbc:mysql://localhost:3306/newdb
+
+ The username of database used is "user" and password "password", alternatively these lines in application.properties can be changed.
+ - spring.datasource.username=user
+ - spring.datasource.password=password
 
 Run
  - mvn spring-boot:run 
 
 URL
- -  http://localhost:8080/
+ -  http://localhost:8090/
  
  Sources
  -   https://hellokoding.com/registration-and-login-example-with-spring-security-spring-boot-spring-data-jpa-hsql-jsp/
  -   https://github.com/fedy2/yahoo-weather-java-api
+
 
 
