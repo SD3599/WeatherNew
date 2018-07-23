@@ -19,14 +19,14 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-/**
- * used to save a user entity to the user table in the database
- * @param user entity to be saved
- */
-    @Override
+	/**
+	 * used to save a user entity to the user table in the database
+	 * @param user entity to be saved
+	 */
+	    @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-  //      user.setRoles(new HashSet<>(roleRepository.findAll()));
+        //  user.setRoles(new HashSet<>(roleRepository.findAll()));
         userRepository.save(user);
     }
 /**

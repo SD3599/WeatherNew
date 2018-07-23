@@ -20,11 +20,11 @@ public class WebApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(WebApplication.class);
     }
-/**
- * Main Method  
- * @param args A string array containing the command line arguments if any.
- * 
- */
+	/**
+	 * Main Method  
+	 * @param args A string array containing the command line arguments if any.
+	 * 
+	 */
     public static void main(String[] args) {
         SpringApplication.run(WebApplication.class, args);
         Log.debug("--Application Started--");
