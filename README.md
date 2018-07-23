@@ -20,7 +20,8 @@ MySQL
 
  Name of the database is newdb alternatively to use your database change the following line in application.properties file.
  - spring.datasource.url=jdbc:mysql://localhost:3306/newdb
-
+ Remeber to grantall priviledges on the database using the following command
+ grant all on newdb.* to '<username>'@'localhost';
  The username of database used is "user" and password "password", alternatively these lines in application.properties can be changed.
  - spring.datasource.username=user
  - spring.datasource.password=password
