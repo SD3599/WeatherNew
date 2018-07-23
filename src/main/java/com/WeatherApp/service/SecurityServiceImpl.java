@@ -24,9 +24,9 @@ public class SecurityServiceImpl implements SecurityService{
     private UserDetailsService userDetailsService;
 
     private static final Logger Log = LoggerFactory.getLogger(SecurityServiceImpl.class);
-/**
- * Finds logged in username and returns the username if exists else returns null  
- */
+	/**
+	 * Finds logged in username and returns the username if exists else returns null  
+	 */
     @Override
     public String findLoggedInUsername() {
         Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();

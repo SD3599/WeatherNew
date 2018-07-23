@@ -21,10 +21,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
- /**
-  * Used to encrypt the password before storing it the table 
-  * @return returns the password encoder method
-  */
+	 /**
+	  * Used to encrypt the password before storing it the table 
+	  * @return returns the password encoder method
+	  */
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();

@@ -137,7 +137,9 @@ public class UserControllerTest extends AbstractControllerTest {
   	    		 
       }
  //   will work only if user with username swapnika is in table
-      @Test
+  
+   /* 
+    @Test
   	  public void testJPAUserLoginSuccess() throws Exception {
     	mockMvc.perform(MockMvcRequestBuilders.post("/login")
   	            .param("username", "swapnika")
@@ -145,18 +147,8 @@ public class UserControllerTest extends AbstractControllerTest {
   		        .andExpect(redirectedUrl("/"));	
   	    		 
       }
-  /*    @Test
-      @WithMockUser(username = "akinpaws",password="swapnika" )
-  
-  	  public void cestJPAUserLoginSuccess() throws Exception {
-    	mockMvc.perform(MockMvcRequestBuilders.post("/login")
-  	            .param("username", "akinpaws")
-  	            .param("password", "swapnika"))
-    	.andDo(print())
-  		        .andExpect(redirectedUrl("/"));	
-  	    		 
-      }
-    */  @Test
+*/
+  @Test
       public void invalidLoginDenied() throws Exception {
         String loginErrorUrl = "/login?error";
         mockMvc
@@ -166,7 +158,7 @@ public class UserControllerTest extends AbstractControllerTest {
 
      
     } 
-    
+    /*
       @Test
     	public void testLoginSuccess() throws Exception 
       {
@@ -199,6 +191,7 @@ public class UserControllerTest extends AbstractControllerTest {
       Assert.assertNotNull("failure- expected entitiy", ch);
   
     }  
+    */
       @Test
       @WithMockUser
    	public void testwelcomeSuccess() throws Exception {
